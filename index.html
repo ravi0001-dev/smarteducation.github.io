@@ -1,192 +1,391 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hi" id="htmlRoot">
 <head>
-<meta charset="UTF-8">
-<title>Smart Education Hub | Education For Every Child</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Smart Education Hub – Affordable coaching for poor & deserving students with performance-based fees and rewards.">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Smart Education Hub | शिक्षा हर बच्चे तक</title>
+  <meta name="description" content="शंकरगढ़ में गरीब लेकिन मेहनती बच्चों के लिए कम/मुफ्त कोचिंग। अच्छे रिजल्ट पर इनाम।"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <style>
+    :root {
+      --grad: linear-gradient(135deg, #0ea5e9, #6366f1, #22c55e);
+      --dark: #0b1020;
+      --card: rgba(255,255,255,0.09);
+      --accent: #22c55e;
+      --glow: 0 0 20px rgba(34,197,94,0.4);
+    }
 
-<style>
-:root{
-  --grad:linear-gradient(135deg,#0ea5e9,#6366f1,#22c55e);
-  --dark:#0b1020;
-  --card:rgba(255,255,255,.08);
-}
-*{margin:0;padding:0;box-sizing:border-box}
-body{
-  font-family:'Segoe UI',sans-serif;
-  background:var(--dark);
-  color:#e5e7eb;
-  line-height:1.6;
-}
-section{padding:90px 20px}
-.container{max-width:1200px;margin:auto}
+    * { margin:0; padding:0; box-sizing:border-box; }
 
-/* NAV */
-nav{
-  position:fixed;
-  top:0;left:0;width:100%;
-  z-index:50;
-  background:rgba(0,0,0,.6);
-  backdrop-filter:blur(10px);
-}
-.nav-wrap{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:15px 25px;
-}
-.logo{
-  font-size:24px;
-  font-weight:800;
-  background:var(--grad);
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
-}
-.nav-wrap a{
-  color:#cbd5f5;
-  margin-left:20px;
-  text-decoration:none;
-}
-.nav-wrap a:hover{color:#22c55e}
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      background: var(--dark);
+      color: #e5e7eb;
+      line-height: 1.7;
+      font-size: clamp(16px, 3.5vw, 18px);
+    }
 
-/* HERO */
-.hero{
-  min-height:100vh;
-  display:flex;
-  align-items:center;
-}
-.hero-grid{
-  display:grid;
-  grid-template-columns:1.2fr .8fr;
-  gap:50px;
-}
-.hero h1{
-  font-size:52px;
-  line-height:1.1;
-}
-.gradient{
-  background:var(--grad);
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
-}
-.hero p{margin-top:18px;color:#cbd5f5}
-.hero-box{
-  background:var(--card);
-  padding:30px;
-  border-radius:25px;
-  border:1px solid rgba(255,255,255,.15);
-}
-.btn{
-  display:inline-block;
-  margin-top:25px;
-  padding:14px 38px;
-  border-radius:40px;
-  background:var(--grad);
-  color:#fff;
-  font-weight:bold;
-  text-decoration:none;
+    section {
+      padding: clamp(60px, 12vw, 110px) 15px;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.9s ease;
+    }
+
+    section.visible { opacity:1; transform:translateY(0); }
+
+    .container {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 0 15px;
+      width: 100%;
+    }
+
+    /* ──────────────── NAV ──────────────── */
+    nav {
+      position: fixed;
+      top:0; left:0; width:100%;
+      z-index: 1000;
+      background: rgba(11,16,32,0.88);
+      backdrop-filter: blur(12px);
+    }
+
+    .nav-wrap {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 20px;
+    }
+
+    .logo {
+      font-size: clamp(1.5rem, 5vw, 2.2rem);
+      font-weight: 900;
+      background: var(--grad);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .nav-menu {
+      display: none;
+      flex-direction: column;
+      position: absolute;
+      top: 100%; left: 0; width: 100%;
+      background: rgba(11,16,32,0.96);
+      padding: 20px 0;
+      transform: translateY(-10px);
+      opacity: 0;
+      transition: all 0.4s ease;
+    }
+
+    .nav-menu.active {
+      display: flex;
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .nav-menu a {
+      color: #d1d5db;
+      text-decoration: none;
+      font-weight: 500;
+      padding: 16px 30px;
+      text-align: center;
+      font-size: 1.15rem;
+    }
+
+    .lang-toggle {
+      background: rgba(34,197,94,0.25);
+      padding: 8px 14px;
+      border-radius: 30px;
+      cursor: pointer;
+      font-size: 0.95rem;
+      font-weight: bold;
+    }
+
+    .hamburger {
+      font-size: 1.9rem;
+      color: var(--accent);
+      cursor: pointer;
+    }
+
+    @media (min-width: 768px) {
+      .nav-menu {
+        display: flex;
+        flex-direction: row;
+        position: static;
+        background: none;
+        padding: 0;
+        transform: none;
+        opacity: 1;
+      }
+      .nav-menu a {
+        margin-left: 24px;
+        padding: 0;
+        font-size: 1rem;
+      }
+      .hamburger { display: none; }
+    }
+
+    /* ──────────────── CAROUSEL ──────────────── */
+    .carousel {
+      position: relative;
+      overflow: hidden;
+      border-radius: 20px;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+      margin: 25px 0;
+    }
+
+    .carousel-inner {
+      display: flex;
+      transition: transform 0.7s ease;
+    }
+
+    .carousel-item { min-width: 100%; }
+
+    .carousel-item img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .carousel-caption {
+      position: absolute;
+      bottom: 15px; left: 15px; right: 15px;
+      background: rgba(0,0,0,0.65);
+      backdrop-filter: blur(8px);
+      padding: 12px;
+      border-radius: 12px;
+      font-size: clamp(1rem, 3.2vw, 1.25rem);
+      text-align: center;
+    }
+
+    .carousel-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(34,197,94,0.75);
+      color: white;
+      border: none;
+      width: 48px; height: 48px;
+      border-radius: 50%;
+      font-size: 1.6rem;
+      cursor: pointer;
+    }
+
+    .prev { left: 12px; }
+    .next { right: 12px; }
+
+    /* ──────────────── HERO ──────────────── */
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 40px;
+      text-align: center;
+    }
+    .hero {
+  margin-top: 20px;           /* और नीचे लाने के लिए बढ़ा सकते हो */
+  min-height: calc(100vh - 80px); /* navbar height घटाकर full view */
 }
 
-/* GLASS CARD */
-.card{
-  background:var(--card);
-  border:1px solid rgba(255,255,255,.15);
-  border-radius:22px;
-  padding:30px;
-  transition:.4s;
-}
-.card:hover{
-  transform:translateY(-8px);
-  box-shadow:0 20px 40px rgba(34,197,94,.25);
-}
+    .hero h1 {
+      font-size: clamp(2.8rem, 9vw, 5.2rem);
+      line-height: 1.1;
+    }
 
-/* GRID */
-.grid{display:grid;gap:30px}
-.grid-3{grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
-.grid-4{grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+    .gradient {
+      background: var(--grad);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
 
-/* TITLES */
-.title{
-  text-align:center;
-  font-size:40px;
-  margin-bottom:60px;
-}
+    .hero p {
+      font-size: clamp(1.1rem, 4vw, 1.35rem);
+      margin: 25px 0 35px;
+    }
 
-/* FORM */
-form input,form textarea,form button{
-  width:100%;
-  margin-top:14px;
-  padding:14px;
-  border-radius:30px;
-  border:none;
-  outline:none;
-}
-form input,form textarea{
-  background:#020617;
-  color:#fff;
-}
-form button{
-  background:var(--grad);
-  color:#fff;
-  font-weight:bold;
-  cursor:pointer;
-}
+    .btn {
+      padding: 16px 40px;
+      border-radius: 50px;
+      background: var(--grad);
+      color: white;
+      font-weight: bold;
+      text-decoration: none;
+      font-size: 1.1rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 220px;
+      min-height: 56px;
+    }
 
-/* FOOTER */
-footer{
-  background:#020617;
-  padding:40px 20px;
-  text-align:center;
-  color:#94a3b8;
-}
+    @media (min-width: 768px) {
+      .hero-grid { grid-template-columns: 1.4fr 1fr; text-align: left; }
+      .carousel { margin: 0; }
+    }
 
-/* RESPONSIVE */
-@media(max-width:900px){
-  .hero-grid{grid-template-columns:1fr;text-align:center}
-  nav a{display:none}
-}
-</style>
+    /* ──────────────── CARDS & GRID ──────────────── */
+    .grid {
+      display: grid;
+      gap: 25px;
+    }
+
+    .grid-3, .grid-4 { grid-template-columns: 1fr; }
+
+    @media (min-width: 640px) {
+      .grid-3, .grid-4 { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (min-width: 1024px) {
+      .grid-3 { grid-template-columns: repeat(3, 1fr); }
+      .grid-4 { grid-template-columns: repeat(4, 1fr); }
+    }
+
+    .card {
+      background: var(--card);
+      backdrop-filter: blur(14px);
+      border: 1px solid rgba(34,197,94,0.2);
+      border-radius: 24px;
+      padding: 28px 20px;
+      text-align: center;
+      transition: 0.4s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: var(--glow);
+    }
+
+    .title {
+      font-size: clamp(2.2rem, 7vw, 4rem);
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    /* ──────────────── FORM ──────────────── */
+    form input, form textarea, form button {
+      width: 100%;
+      margin: 16px 0;
+      padding: 18px 24px;
+      border-radius: 50px;
+      font-size: 1.1rem;
+      border: none;
+    }
+
+    form input, form textarea {
+      background: #020617;
+      color: white;
+      border: 1px solid #334155;
+    }
+
+    form button {
+      background: var(--grad);
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      min-height: 60px;
+    }
+
+    /* ──────────────── FLOATING CONTACT ──────────────── */
+    .contact-fab {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 999;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .fab {
+      width: 65px;
+      height: 65px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.8rem;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      text-decoration: none;
+    }
+
+    .whatsapp { background: #25D366; }
+    .call { background: #6366f1; }
+
+    /* ──────────────── FOOTER ──────────────── */
+    footer {
+      background: #020617;
+      padding: 60px 20px 40px;
+      text-align: center;
+      color: #94a3b8;
+      font-size: 0.95rem;
+    }
+
+    @media (min-width: 768px) {
+      .contact-fab { bottom: 40px; right: 40px; }
+    }
+  </style>
 </head>
-
 <body>
 
-<!-- NAV -->
+<!-- NAVIGATION -->
 <nav>
   <div class="nav-wrap container">
     <div class="logo">Smart Education Hub</div>
-    <div>
-      <a href="#mission">Mission</a>
-      <a href="#system">System</a>
-      <a href="#courses">Courses</a>
-      <a href="#join">Join</a>
+    <div style="display:flex; align-items:center; gap:15px;">
+      <div class="lang-toggle" id="langToggle">English</div>
+      <i class="fas fa-bars hamburger" id="hamburger"></i>
     </div>
+  </div>
+
+  <div class="nav-menu" id="navMenu">
+    <a href="#mission" data-en="Mission" data-hi="मकसद">मकसद</a>
+    <a href="#system" data-en="Our System" data-hi="हमारा तरीका">हमारा तरीका</a>
+    <a href="#rewards" data-en="Rewards" data-hi="इनाम">इनाम</a>
+    <a href="#join" data-en="Join" data-hi="जुड़ें">जुड़ें</a>
   </div>
 </nav>
 
 <!-- HERO -->
 <section class="hero">
-  <div class="container hero-grid">
-    <div>
-      <h1>
-        Education For<br>
-        <span class="gradient">Every Child</span>
-      </h1>
-      <p>
-        Ye coaching un bachchon ke liye hai jo padhna chahte hain lekin paiso ki wajah se padh nahi paate.
-        Hamara aim hai – <b>koi bhi bachcha anpadh na rahe</b>.
-      </p>
-      <a href="#join" class="btn">Apply For Admission</a>
-    </div>
+  <div class="container">
+    <div class="hero-grid">
+      <div>
+        <h1 data-en="Education For <span class='gradient'>Every Child</span>" data-hi="शिक्षा <span class='gradient'>हर बच्चे</span> तक">
+          शिक्षा <span class="gradient">हर बच्चे</span> तक
+        </h1>
 
-    <div class="hero-box">
-      <h3 class="gradient">Our Promise</h3>
-      <p>✔ Gareeb & deserving students ko support</p>
-      <p>✔ Performance ke hisaab se fees</p>
-      <p>✔ Achha result = gifts & rewards</p>
-      <p>✔ Sirf padhne wale bachche</p>
+        <p data-en="Low or free coaching for hardworking poor children in Shankargarh.<br>Good performance = lower fees + cycle/mobile rewards!<br>Our promise: No deserving child left behind."
+           data-hi="शंकरगढ़ में मेहनती गरीब बच्चों के लिए कम/मुफ्त कोचिंग।<br>अच्छा परफॉर्मेंस = fees कम + साइकिल/मोबाइल जैसे इनाम!<br>हमारा संकल्प: कोई deserving बच्चा पढ़ाई से वंचित न रहे।">
+          शंकरगढ़ में मेहनती गरीब बच्चों के लिए कम/मुफ्त कोचिंग।<br>
+          अच्छा परफॉर्मेंस = fees कम + साइकिल/मोबाइल जैसे इनाम!<br>
+          हमारा संकल्प: कोई deserving बच्चा पढ़ाई से वंचित न रहे।
+        </p>
+
+        <a href="#join" class="btn" data-en="Apply for Admission" data-hi="Admission के लिए Apply करें">
+          Admission के लिए Apply करें
+        </a>
+      </div>
+
+      <!-- Carousel -->
+      <div class="carousel">
+        <div class="carousel-inner" id="carouselInner">
+          <div class="carousel-item">
+            <img src="https://c8.alamy.com/comp/DH1JY2/school-children-studying-in-classroom-uttar-pradesh-india-asia-DH1JY2.jpg" alt="Classroom">
+            <div class="carousel-caption" data-en="Our children studying hard" data-hi="हमारे बच्चे मेहनत से पढ़ रहे हैं">हमारे बच्चे मेहनत से पढ़ रहे हैं</div>
+          </div>
+          <div class="carousel-item">
+            <img src="https://www.onecountry.org/sites/default/files/styles/full_width_830px/public/story/639_02_DSC01753n.jpg?itok=pmOvZR0C" alt="Village kids">
+            <div class="carousel-caption" data-en="Shankargarh students" data-hi="शंकरगढ़ के बच्चे">शंकरगढ़ के बच्चे</div>
+          </div>
+          <div class="carousel-item">
+            <img src="https://c8.alamy.com/comp/R9FE3M/varanasi-india-20-september-2011-school-children-studying-in-classroom-at-village-school-varanasi-at-varanasi-uttar-pradesh-india-R9FE3M.jpg" alt="Rural class">
+            <div class="carousel-caption" data-en="Education for every child" data-hi="हर बच्चे को शिक्षा">हर बच्चे को शिक्षा</div>
+          </div>
+        </div>
+        <button class="carousel-btn prev" onclick="moveSlide(-1)">‹</button>
+        <button class="carousel-btn next" onclick="moveSlide(1)">›</button>
+      </div>
     </div>
   </div>
 </section>
@@ -194,11 +393,11 @@ footer{
 <!-- MISSION -->
 <section id="mission">
   <div class="container">
-    <h2 class="title gradient">Our Mission</h2>
+    <h2 class="title gradient" data-en="Our Mission" data-hi="हमारा मकसद">हमारा मकसद</h2>
     <div class="grid grid-3">
-      <div class="card">📘 Har bachche ko padhne ka mauka mile</div>
-      <div class="card">🤝 Gareeb parivaro ko quality education</div>
-      <div class="card">🚀 Future-ready skills & discipline</div>
+      <div class="card" data-en="Every child deserves quality education" data-hi="हर बच्चे को अच्छी शिक्षा का हक">हर बच्चे को अच्छी शिक्षा का हक</div>
+      <div class="card" data-en="Fight poverty through education" data-hi="गरीबी को पढ़ाई से हराना">गरीबी को पढ़ाई से हराना</div>
+      <div class="card" data-en="Discipline + future skills" data-hi="Discipline + future skills">Discipline + future skills</div>
     </div>
   </div>
 </section>
@@ -206,25 +405,18 @@ footer{
 <!-- SYSTEM -->
 <section id="system">
   <div class="container">
-    <h2 class="title gradient">Unique Education System</h2>
+    <h2 class="title gradient" data-en="Our Unique System" data-hi="हमारा अनोखा तरीका">हमारा अनोखा तरीका</h2>
+    <p style="text-align:center; max-width:800px; margin:0 auto 50px; font-size: clamp(1.1rem, 3.5vw, 1.3rem);" data-en="We set fees based on results. Very low fees at start.<br>Monthly tests → good result = lower fees or rewards!<br>Only for serious students."
+       data-hi="हम results के आधार पर fees तय करते हैं। शुरू में बहुत कम fees।<br>मासिक टेस्ट → अच्छा रिजल्ट = fees कम या इनाम!<br>सिर्फ गंभीर छात्रों के लिए।">
+      हम results के आधार पर fees तय करते हैं। शुरू में बहुत कम fees।<br>
+      मासिक टेस्ट → अच्छा रिजल्ट = fees कम या इनाम!<br>
+      सिर्फ गंभीर छात्रों के लिए।
+    </p>
     <div class="grid grid-4">
       <div class="card">📊 Monthly Performance Check</div>
-      <div class="card">⬆ No Result = Fees Increase</div>
-      <div class="card">🎁 Good Result = Gifts</div>
-      <div class="card">❌ Non-serious Students Not Allowed</div>
-    </div>
-  </div>
-</section>
-
-<!-- COURSES -->
-<section id="courses">
-  <div class="container">
-    <h2 class="title gradient">Courses We Offer</h2>
-    <div class="grid grid-4">
-      <div class="card">Class 6–8 Foundation</div>
-      <div class="card">Class 9 Board Prep</div>
-      <div class="card">Class 10 Board Excellence</div>
-      <div class="card">Computer & Coding Basics</div>
+      <div class="card">⬆ Low Result = Fees May Increase</div>
+      <div class="card">🎁 Good Result = Cycle / Mobile / Books</div>
+      <div class="card">❌ Non-serious students not allowed</div>
     </div>
   </div>
 </section>
@@ -232,21 +424,77 @@ footer{
 <!-- JOIN -->
 <section id="join">
   <div class="container">
-    <h2 class="title gradient">Join Smart Education Hub</h2>
-    <form class="card">
-      <input type="text" placeholder="Student Name" required>
-      <input type="text" placeholder="Class" required>
-      <input type="text" placeholder="Parent Mobile Number" required>
-      <textarea placeholder="Why you want to study here?" rows="4"></textarea>
-      <button type="submit">Submit Application</button>
+    <h2 class="title gradient" data-en="Join Today" data-hi="आज ही जुड़ें">आज ही जुड़ें</h2>
+    <form class="card" style="max-width:720px; margin:auto; padding:30px 20px;">
+      <input type="text" placeholder="Student Name / बच्चे का नाम" required/>
+      <input type="text" placeholder="Class / कक्षा (जैसे 9 या 10)" required/>
+      <input type="tel" placeholder="Parent Mobile / माता-पिता का मोबाइल" required/>
+      <textarea placeholder="Why do you want to join? / यहाँ क्यों पढ़ना चाहते हैं?" rows="5" required></textarea>
+      <label style="display:block; margin:20px 0; color:#94a3b8; font-size:1.05rem;">
+        <input type="checkbox" required style="margin-right:10px; transform:scale(1.3);"/>
+        <span data-en="I promise full seriousness & regular attendance" data-hi="मैं पूरी गंभीरता और नियमित उपस्थिति का वादा करता/करती हूँ">
+          मैं पूरी गंभीरता और नियमित उपस्थिति का वादा करता/करती हूँ
+        </span>
+      </label>
+      <button type="submit" data-en="Submit Application" data-hi="Application Submit करें">Application Submit करें</button>
     </form>
   </div>
 </section>
 
+<!-- FLOATING CONTACT -->
+<div class="contact-fab">
+  <a href="https://wa.me/919xxxxxxxxx?text=Smart%20Education%20Hub%20-%20Admission%20के%20बारे%20में%20जानकारी%20चाहिए" class="fab whatsapp" target="_blank"><i class="fab fa-whatsapp"></i></a>
+  <a href="tel:+919xxxxxxxxx" class="fab call"><i class="fas fa-phone"></i></a>
+</div>
+
+<!-- FOOTER -->
 <footer>
-  © 2026 Smart Education Hub  
-  <br>Education That Changes Lives 🌱
+  © 2026 Smart Education Hub – Shankargarh, Uttar Pradesh<br>
+  <span data-en="Education That Changes Lives 🌱" data-hi="शिक्षा जो जिंदगी बदल दे 🌱">शिक्षा जो जिंदगी बदल दे 🌱</span><br><br>
+  WhatsApp / Call: +91 9xxxxxxxxx
 </footer>
 
+<script>
+    // Hamburger menu
+    document.getElementById('hamburger').onclick = () => {
+        document.getElementById('navMenu').classList.toggle('active');
+    };
+
+    // Language toggle
+    const toggle = document.getElementById('langToggle');
+    let isEnglish = false;
+
+    toggle.onclick = () => {
+        isEnglish = !isEnglish;
+        toggle.textContent = isEnglish ? 'हिंदी' : 'English';
+        document.getElementById('htmlRoot').lang = isEnglish ? 'en' : 'hi';
+
+        document.querySelectorAll('[data-en][data-hi]').forEach(el => {
+            el.innerHTML = isEnglish ? el.dataset.en : el.dataset.hi;
+        });
+    };
+
+    // Fade in on scroll
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) entry.target.classList.add('visible');
+        });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll('section').forEach(sec => observer.observe(sec));
+
+    // Carousel
+    let slideIndex = 0;
+    function moveSlide(n) {
+        slideIndex += n;
+        const inner = document.getElementById('carouselInner');
+        const total = inner.children.length;
+        if (slideIndex >= total) slideIndex = 0;
+        if (slideIndex < 0) slideIndex = total - 1;
+        inner.style.transform = `translateX(-${slideIndex * 100}%)`;
+    }
+
+    setInterval(() => moveSlide(1), 6500);
+</script>
 </body>
 </html>
