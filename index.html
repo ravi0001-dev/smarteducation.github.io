@@ -1,10 +1,252 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>My First Page</title>
+<meta charset="UTF-8">
+<title>Smart Education Hub | Education For Every Child</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Smart Education Hub – Affordable coaching for poor & deserving students with performance-based fees and rewards.">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<style>
+:root{
+  --grad:linear-gradient(135deg,#0ea5e9,#6366f1,#22c55e);
+  --dark:#0b1020;
+  --card:rgba(255,255,255,.08);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  font-family:'Segoe UI',sans-serif;
+  background:var(--dark);
+  color:#e5e7eb;
+  line-height:1.6;
+}
+section{padding:90px 20px}
+.container{max-width:1200px;margin:auto}
+
+/* NAV */
+nav{
+  position:fixed;
+  top:0;left:0;width:100%;
+  z-index:50;
+  background:rgba(0,0,0,.6);
+  backdrop-filter:blur(10px);
+}
+.nav-wrap{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:15px 25px;
+}
+.logo{
+  font-size:24px;
+  font-weight:800;
+  background:var(--grad);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+.nav-wrap a{
+  color:#cbd5f5;
+  margin-left:20px;
+  text-decoration:none;
+}
+.nav-wrap a:hover{color:#22c55e}
+
+/* HERO */
+.hero{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+}
+.hero-grid{
+  display:grid;
+  grid-template-columns:1.2fr .8fr;
+  gap:50px;
+}
+.hero h1{
+  font-size:52px;
+  line-height:1.1;
+}
+.gradient{
+  background:var(--grad);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+.hero p{margin-top:18px;color:#cbd5f5}
+.hero-box{
+  background:var(--card);
+  padding:30px;
+  border-radius:25px;
+  border:1px solid rgba(255,255,255,.15);
+}
+.btn{
+  display:inline-block;
+  margin-top:25px;
+  padding:14px 38px;
+  border-radius:40px;
+  background:var(--grad);
+  color:#fff;
+  font-weight:bold;
+  text-decoration:none;
+}
+
+/* GLASS CARD */
+.card{
+  background:var(--card);
+  border:1px solid rgba(255,255,255,.15);
+  border-radius:22px;
+  padding:30px;
+  transition:.4s;
+}
+.card:hover{
+  transform:translateY(-8px);
+  box-shadow:0 20px 40px rgba(34,197,94,.25);
+}
+
+/* GRID */
+.grid{display:grid;gap:30px}
+.grid-3{grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+.grid-4{grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+
+/* TITLES */
+.title{
+  text-align:center;
+  font-size:40px;
+  margin-bottom:60px;
+}
+
+/* FORM */
+form input,form textarea,form button{
+  width:100%;
+  margin-top:14px;
+  padding:14px;
+  border-radius:30px;
+  border:none;
+  outline:none;
+}
+form input,form textarea{
+  background:#020617;
+  color:#fff;
+}
+form button{
+  background:var(--grad);
+  color:#fff;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+/* FOOTER */
+footer{
+  background:#020617;
+  padding:40px 20px;
+  text-align:center;
+  color:#94a3b8;
+}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  .hero-grid{grid-template-columns:1fr;text-align:center}
+  nav a{display:none}
+}
+</style>
 </head>
+
 <body>
-    <h1>Hello World</h1>
-    <p>Ye mera simple HTML page hai.</p>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-wrap container">
+    <div class="logo">Smart Education Hub</div>
+    <div>
+      <a href="#mission">Mission</a>
+      <a href="#system">System</a>
+      <a href="#courses">Courses</a>
+      <a href="#join">Join</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container hero-grid">
+    <div>
+      <h1>
+        Education For<br>
+        <span class="gradient">Every Child</span>
+      </h1>
+      <p>
+        Ye coaching un bachchon ke liye hai jo padhna chahte hain lekin paiso ki wajah se padh nahi paate.
+        Hamara aim hai – <b>koi bhi bachcha anpadh na rahe</b>.
+      </p>
+      <a href="#join" class="btn">Apply For Admission</a>
+    </div>
+
+    <div class="hero-box">
+      <h3 class="gradient">Our Promise</h3>
+      <p>✔ Gareeb & deserving students ko support</p>
+      <p>✔ Performance ke hisaab se fees</p>
+      <p>✔ Achha result = gifts & rewards</p>
+      <p>✔ Sirf padhne wale bachche</p>
+    </div>
+  </div>
+</section>
+
+<!-- MISSION -->
+<section id="mission">
+  <div class="container">
+    <h2 class="title gradient">Our Mission</h2>
+    <div class="grid grid-3">
+      <div class="card">📘 Har bachche ko padhne ka mauka mile</div>
+      <div class="card">🤝 Gareeb parivaro ko quality education</div>
+      <div class="card">🚀 Future-ready skills & discipline</div>
+    </div>
+  </div>
+</section>
+
+<!-- SYSTEM -->
+<section id="system">
+  <div class="container">
+    <h2 class="title gradient">Unique Education System</h2>
+    <div class="grid grid-4">
+      <div class="card">📊 Monthly Performance Check</div>
+      <div class="card">⬆ No Result = Fees Increase</div>
+      <div class="card">🎁 Good Result = Gifts</div>
+      <div class="card">❌ Non-serious Students Not Allowed</div>
+    </div>
+  </div>
+</section>
+
+<!-- COURSES -->
+<section id="courses">
+  <div class="container">
+    <h2 class="title gradient">Courses We Offer</h2>
+    <div class="grid grid-4">
+      <div class="card">Class 6–8 Foundation</div>
+      <div class="card">Class 9 Board Prep</div>
+      <div class="card">Class 10 Board Excellence</div>
+      <div class="card">Computer & Coding Basics</div>
+    </div>
+  </div>
+</section>
+
+<!-- JOIN -->
+<section id="join">
+  <div class="container">
+    <h2 class="title gradient">Join Smart Education Hub</h2>
+    <form class="card">
+      <input type="text" placeholder="Student Name" required>
+      <input type="text" placeholder="Class" required>
+      <input type="text" placeholder="Parent Mobile Number" required>
+      <textarea placeholder="Why you want to study here?" rows="4"></textarea>
+      <button type="submit">Submit Application</button>
+    </form>
+  </div>
+</section>
+
+<footer>
+  © 2026 Smart Education Hub  
+  <br>Education That Changes Lives 🌱
+</footer>
+
 </body>
 </html>
